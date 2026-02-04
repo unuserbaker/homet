@@ -1,0 +1,19 @@
+services:
+
+  db:
+    image: postgres:14  # Actualice la versión de acuerdo al ambiente productivo
+    container_name: Test_Postgres_DB
+    environment:
+      POSTGRES_DB: testDb
+      POSTGRES_PASSWORD: myPassword123
+      POSTGRES_USER: tesDbUser
+    ports:
+      - "5433:5432"
+    logging:
+      driver: json-file
+    restart: unless-stopped
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+volumes:
+  db-data:
