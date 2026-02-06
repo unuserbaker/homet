@@ -15,7 +15,6 @@ import { DBConfigService } from 'src/config/database/postgresql/config.service';
         username: dbConfigService.user,
         password: dbConfigService.password,
         database: dbConfigService.database,
-        schema: 'TestSchema', //TODO: Include in config services
         autoLoadEntities: true,
         synchronize: true,
       }),
