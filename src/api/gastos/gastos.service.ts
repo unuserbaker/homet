@@ -11,11 +11,22 @@ export class GastosService {
     private readonly gastoRepo: Repository<Gasto>,
   ) {}
 
-  create(dto: CreateGastoDto) {
-    return this.gastoRepo.save(dto);
+  create(dto: CreateGastoDto): Promise<Gasto> {
+    const gasto = this.gastoRepo.create({
+      descripcion: dto.descripcion,
+      monto: dto.monto,
+      fecha: new Date(dto.fecha),
+      esRecurrente: dto.esRecurrente ?? false,
+      tipoGasto: { id: dto.tipoGastoId },
+      categoria: { id: dto.categoriaId },
+      subcategoria: dto.subcategoriaId ? { id: dto.subcategoriaId } : undefined,
+      persona: dto.personaId ? { id: dto.personaId } : undefined,
+    });
+
+    return this.gastoRepo.save(gasto);
   }
 
-  findAll() {
+  findAll(): Promise<Gasto[]> {
     return this.gastoRepo.find({
       order: { fecha: 'DESC' },
     });

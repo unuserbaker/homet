@@ -22,6 +22,13 @@ async function bootstrap(): Promise<void> {
   const swaggerConfig: SwaggerConfigService = app.get(SwaggerConfigService);
   const port = appConfig.port;
 
+  // Enable CORS
+  app.enableCors({
+    credentials: false,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
+  });
+
   app.setGlobalPrefix('api');
   app.useGlobalPipes(
     new ValidationPipe({

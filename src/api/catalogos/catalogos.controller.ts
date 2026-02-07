@@ -6,17 +6,17 @@ export class CatalogosController {
   constructor(private readonly service: CatalogosService) {}
 
   @Get('tipos-gasto')
-  tipos() {
+  tipos(): any {
     return this.service.tiposGasto();
   }
 
   @Get('categorias')
-  categorias() {
+  categorias(): any {
     return this.service.categorias();
   }
 
   @Get('subcategorias')
-  subcategorias() {
+  subcategorias(): any {
     return this.service.subcategorias();
   }
 }

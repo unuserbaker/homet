@@ -9,6 +9,7 @@ import { HealthController } from './api/health/health.controller';
 import { HelloController } from './api/hello/hello.controller';
 import { HelloService } from './api/hello/hello.service';
 import { CacheModule } from '@nestjs/cache-manager';
+import { CatalogosModule } from './api/catalogos/catalogos.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { CacheModule } from '@nestjs/cache-manager';
     SwaggerConfigModule,
     HelloModule,
     GastosModule,
+    CatalogosModule,
     CacheModule.register({
       isGlobal: true,
       ttl: 5000, // Cache expiration time
