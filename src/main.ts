@@ -8,6 +8,8 @@ import { SwaggerConfigModule } from './config/openapi/swagger/config.module';
 import { SwaggerConfigService } from './config/openapi/swagger/config.service';
 import { LoggerInterceptor } from './common/interceptors/logger.interceptor';
 
+const port = Number(process.env.PORT ?? 3000);
+
 async function bootstrap(): Promise<void> {
   const isProduction = process.env.NODE_ENV === 'production';
   const logLevels: LogLevel[] = isProduction
@@ -38,10 +40,10 @@ async function bootstrap(): Promise<void> {
 
   app.useGlobalInterceptors(new LoggerInterceptor());
 
-  await app.listen(process.env.PORT ?? 3000);
+  await app.listen(port);
 }
 bootstrap()
   .then(() => {
-    console.log('The app is up!');
+    console.log(`The app is up! on a port ${port.toString()}`);
   })
   .catch(() => new Error('Something fail loading the app'));
